@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/fav-icon.png">
+    <script src="./js/sessao.js"></script>
+    <title> Login | WWAFA </title>
+</head>
+
+<body>
+
+    <body>
+        <!-- TELA DE LOGIN + NAVBAR FIXA -->
+        <div class="voltar_site">
+            <a href="./index.html">
+                < Voltar </a>
+        </div>
+        <section class="telaLogin" id="loginSite">
+            <div class="login">
+                <div class="alerta_erro">
+                    <div class="card_erro" id="cardErro">
+                        <span id="mensagem_erro"></span>
+                    </div>
+                    <div class="container">
+                        <div class="card_cadastro">
+                            <h1>Bem Vindo de volta!</h1>
+                        </div>
+                        <div class="input_usuario">
+                            <div class="campo">
+                                <span>Nome Completo:</span>
+                                <input type="text" id="input_nome" placeholder="Seu nome"><br>
+                            </div>
+                            <div class="campo">
+                                <span>E-mail:</span>
+                                <input type="text" id="input_email" placeholder="seuemail@gmail.com"><br>
+                            </div>
+                            <div class="campo">
+                                <span>Senha:</span>
+                                <input type="password" id="input_senha" placeholder="********"><br>
+                            </div>
+                            <button onclick="entrar()" class="botao">
+                                Entrar
+                            </button>
+                            <div id="div_aguardar" class="loading-div">
+                                <img src="./assets/circle-loading.gif" id="loading-gif">
+                            </div>
+                            <div id="div_erros_login"></div>
+                            <div class="login_cad">
+                                Ainda não tem uma conta?<br>
+                                <a href="./cadastro.html">Registrar</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+
+</html>
+
+<script>
+    function entrar() {
+        aguardar();
+
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

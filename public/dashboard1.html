@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <div>
+                <h1>BEM VINDO(A)!</h1>
+            </div>
+            <div id="opcoes_menu" class="opcoes">
+                <a href="dashboard1.html">Dashboard</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="">Favoritos</a>
+                <a href="index.html">Sair</a>
+            </div>
+        </div>
+
+        <div class="dash">
+            <div class="kpis">
+                <div id="1" class="kpi1">
+                    <p>MAIOR PONTUAÇÃO</p>
+                    <span>8/10</span>
+                    <u>3ª Rodada</u>
+                </div>
+                <div id="2" class="kpi2">
+                    <p>MENOR PONTUAÇÃO</p>
+                    <span>3/10</span>
+                    <u>2ª Rodada</u>
+                </div>
+                <div id="3" class="kpi3">
+                    <p>MÚSICA FAVORITA</p>
+                    <span>ilomilo</span>
+                </div>
+                <div class="ranking">
+                    <section class="grank">
+                        <h2>FAVORITOS DOS USUÁRIOS</h2>
+                        <div class="favoritas">
+                            <a>1º Lugar</a>
+                            <a>2º Lugar</a>
+                            <a>3º Lugar</a>
+                            <a>4º Lugar</a>
+                            <a>5º Lugar</a>
+                            <a>6º Lugar</a>
+                            <a>7º Lugar</a>
+                            <a>8º Lugar</a>
+                            <a>9º Lugar</a>
+                            <a>10º Lugar</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="graficos">
+                <div class="pontuacao">
+                    <h3>PONTUAÇÃO POR RODADA</h3>
+                    <section class="gquiz">
+                        <canvas id="grafico_quiz"></canvas>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var contextoQuiz = document.getElementById('grafico_quiz').getContext('2d');
+    contextoQuiz.canvas.width = 650;
+    contextoQuiz.canvas.height = 400;
+    var chave = new Chart(
+        contextoQuiz,
+        {
+            type: 'bar',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6'],
+                datasets: [{
+                    label: 'Acertos por Rodada',
+                    data: [9, 3, 5, 10, 4, 8],
+                    type: 'bar',
+                    borderColor: 'transparent',
+                    backgroundColor: '#00ff2a',
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        }
+    );
+</script>

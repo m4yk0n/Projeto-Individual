@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/fav-icon.png">
+    <title>When We All Fall Asleep</title>
+</head>
+
+<body>
+    <!-- TELA DE INICIO DO SITE + NAVBAR FIXA -->
+    <section class="tela_inicial" id="inicioSite">
+        <div class="inicio">
+            <div class="container">
+                <ul class="navbar">
+                    <li><a href="#sobreAlbum">Álbum</a></li>
+                    <li><a href="#analiseFaixas">Faixas</a></li>
+                    <li><a href="#infQuiz">Quiz</a></li>
+                    <li><a href="#inicioSite"><img src="./assets/album_title.png"></a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="./login.html">Login</a></li>
+                    <li><a href="./cadastro.html">Cadastro</a></li>
+                </ul>
+            </div>
+
+            <div class="img_inicial">
+                <div class="container">
+                    <div class="imagem_inicial">
+                        <img id="fundo_foto" src="./assets/album_cover.png">
+                        <video id="fundo_video" src="./assets/video_inicio.mp4" preload="auto"
+                            style="display: none;"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA SOBRE O ALBUM -->
+    <section class="telaDois" id="sobreAlbum">
+        <div class="album">
+            <div class="container">
+                <div class="info_album">
+                    <h1>SOBRE O ÁLBUM</h1>
+                    "When We All Fall Asleep, Where Do We Go?" é o álbum de estreia de Billie Eilish, lançado em 2019.
+                    Abordando temas como transtornos psicológicos e paralisia do sono, WWAFA se tornou um
+                    projeto notório e marcante para a cultura pop, explorando temas sombrios e introspectivos com uma
+                    mistura de pop, electropop e trap. Vencedor de 6 grammy's com letras profundas e produções
+                    inovadoras, Billie e seu irmão Finneas criaram um álbum que ressoou mundialmente, sendo considerado
+                    um de seus melhores trabalhos e ganhando diversos prêmios e consolidando Billie
+                    como uma das artistas mais influentes de sua geração, tudo isso sendo produzido em seu quarto!
+                </div>
+                <div class="img_album">
+                    <img src="./assets/ghoul.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANALISE DAS FAIXAS DO ALBUM  -->
+    <section class="telaTres" id="analiseFaixas">
+        <div class="analise_faixas">
+            <div class="container">
+                <div id="faixasEsquerda" class="faixas_esquerda">
+                    <div class="modal1 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>!!!!!!!!</h2>
+                                A introdução é um curto áudio de Billie Eilish tirando seu aparelho ortodôntico, seguido
+                                por uma conversa casual com seu irmão e colaborador Finneas. Este momento íntimo define
+                                um tom pessoal e autêntico para o álbum, preparando os ouvintes para uma jornada
+                                introspectiva. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_um" onclick="verFaixa(1)">
+                        !!!!!!!!
+                    </p>
+                    <div class="modal2 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>bad guy</h2>
+                                Um dos maiores hits de Billie, "bad guy" é construído em torno de uma linha de baixo
+                                pulsante e batidas eletrônicas minimalistas. A faixa destaca-se por sua letra irônica e
+                                provocadora, onde Billie desafia os estereótipos de gênero e assume uma postura ousada.
+                                Com um refrão cativante e uma produção inovadora, a música se tornou um símbolo de sua
+                                imagem desafiadora. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_dois" onclick="verFaixa(2)">
+                        bad guy
+                    </p>
+                    <div class="modal3 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>xanny</h2>
+                                Uma crítica poderosa ao uso recreativo de drogas, "xanny" combina uma melodia lenta e
+                                atmosférica com batidas abafadas que evocam a sensação de estar sob o efeito de
+                                sedativos. Billie aborda a pressão social entre jovens para usar drogas e expressa sua
+                                preocupação com a saúde mental de sua geração. A produção etérea complementa a seriedade
+                                da mensagem, criando uma atmosfera de reflexão. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_tres" onclick="verFaixa(3)">
+                        xanny
+                    </p>
+                    <div class="modal4 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>you should see me in a crown</h2>
+                                Inspirada por uma citação do personagem Moriarty na série "Sherlock", esta faixa tem uma
+                                produção sombria e eletrônica que destaca a ambição e autoconfiança de Billie. Com
+                                batidas pulsantes e sintetizadores intensos, Billie canta sobre sua determinação em
+                                alcançar o sucesso, independentemente dos obstáculos. A faixa transmite uma sensação de
+                                poder e invencibilidade. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_quatro" onclick="verFaixa(4)">
+                        you should see me in a crown
+                    </p>
+                    <div class="modal5 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>all the good girls go to hell</h2>
+                                Esta faixa combina uma melodia pop cativante com uma crítica irônica à hipocrisia
+                                religiosa e às questões ambientais. Billie personifica a Terra como uma figura cansada
+                                dos danos causados pela humanidade, e a produção vibrante e energética contrasta com a
+                                seriedade das letras. A música aborda a necessidade urgente de mudanças para proteger o
+                                meio ambiente. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                            <!-- <a onclick="infoEcologia()"> Saiba Mais </a> -->
+                        </div>
+                    </div>
+                    <p class="faixa_cinco" onclick="verFaixa(5)">
+                        all the good girls go to hell
+                    </p>
+                    <div class="modal6 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>wish you were gay</h2>
+                                Em "wish you were gay", Billie explora o sentimento de rejeição amorosa com humor e
+                                vulnerabilidade. A canção aborda o desejo de que a razão para a rejeição fosse algo fora
+                                de seu controle, como a orientação sexual do outro, em vez de uma falha pessoal. A
+                                produção minimalista e a melodia suave destacam a sinceridade e a dor nas letras,
+                                tornando a faixa intimamente relacionável. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_seis" onclick="verFaixa(6)">
+                        wish you were gay
+                    </p>
+                    <div class="modal7 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>when the party's over</h2>
+                                Uma das baladas mais emocionantes do álbum, "when the party's over" é uma reflexão sobre
+                                o fim de um relacionamento e a solidão subsequente. A produção minimalista, com foco em
+                                piano e vocais etéreos, amplifica a emotividade da canção. Billie canta sobre a
+                                dificuldade de deixar alguém ir, mesmo sabendo que é o melhor. A faixa destaca sua
+                                habilidade em transmitir emoções profundas com simplicidade. <br><br>
+
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_sete" onclick="verFaixa(7)">
+                        when the party's over
+                    </p>
+                </div>
+                <div id="faixasDireita" class="faixas_direita">
+                    <div class="modal8 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>8</h2>
+                                "8" é uma faixa que mistura vulnerabilidade e frustração em um relacionamento
+                                desequilibrado. Billie alterna entre uma voz infantilizada e uma voz mais madura,
+                                refletindo a oscilação entre a inocência e a desilusão. A melodia acústica e os
+                                "da-da-da-da-da" criam uma atmosfera de confusão e desamparo, simbolizando a tentativa
+                                de preencher o vazio emocional. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_oito" onclick="verFaixa(8)">
+                        8
+                    </p>
+                    <div class="modal9 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>my strange addiction</h2>
+                                Com uma batida animada e elementos pop, "my strange addiction" compara um relacionamento
+                                tóxico a um vício. A faixa incorpora trechos de diálogos da série "The Office",
+                                adicionando um toque de humor e familiaridade. As letras abordam a incapacidade de se
+                                afastar de algo prejudicial, apesar dos avisos. A produção enérgica e os samples criam
+                                uma faixa dinâmica e envolvente. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_nove" onclick="verFaixa(9)">
+                        my strange addiction
+                    </p>
+                    <div class="modal10 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>bury a friend</h2>
+                                "bury a friend" é uma das faixas mais sombrias do álbum, explorando temas de morte e
+                                pesadelos. A produção eletrônica e assustadora complementa as letras inquietantes, onde
+                                Billie se coloca no papel de um monstro debaixo da cama. A canção investiga medos
+                                profundos e a luta interna com a escuridão pessoal, criando uma atmosfera intensa e
+                                perturbadora. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_dez" onclick="verFaixa(10)">
+                        bury a friend
+                    </p>
+                    <div class="modal11 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>ilomilo</h2>
+                                Em "ilomilo", Billie aborda o medo de abandono e a insegurança em relacionamentos. A
+                                melodia melancólica e os elementos eletrônicos sutis criam uma atmosfera de ansiedade.
+                                Billie canta sobre a necessidade de atenção e a dor da separação, expressando a luta
+                                para manter proximidade e a ansiedade de perder alguém importante. As letras revelam uma
+                                vulnerabilidade profunda. <br><br>
+                                <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_onze" onclick="verFaixa(11)">
+                        ilomilo
+                    </p>
+                    <div class="modal12 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>listen before i go</h2>
+                                "listen before i go" é uma das faixas mais tristes do álbum, abordando pensamentos
+                                suicidas com uma melodia de piano suave. Billie expressa uma angústia profunda e um
+                                desejo de escapar da dor. As letras são diretas e emocionalmente carregadas, destacando
+                                a gravidade dos sentimentos de desespero. A produção minimalista intensifica o impacto
+                                emocional da faixa. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_doze" onclick="verFaixa(12)">
+                        listen before i go
+                    </p>
+                    <div class="modal13 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>i love you</h2>
+                                Uma balada acústica, "i love you" explora a complexidade do amor e o medo de se entregar
+                                emocionalmente. Billie canta sobre a vulnerabilidade e a hesitação em amar alguém. A
+                                produção suave e as harmonias delicadas criam uma atmosfera íntima e emocional,
+                                refletindo a profundidade dos sentimentos envolvidos. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_treze" onclick="verFaixa(13)">
+                        i love you
+                    </p>
+                    <div class="modal14 modal">
+                        <div class="contentmodal">
+                            <span>
+                                <h2>goodbye</h2>
+                                Encerrando o álbum, "goodbye" repete trechos de todas as músicas anteriores, servindo
+                                como um resumo melódico e lírico da jornada do álbum. A faixa é uma despedida
+                                melancólica que amarra os temas e emoções explorados ao longo do álbum, deixando uma
+                                impressão duradoura nos ouvintes. <br><br>
+                            </span>
+                            <button onclick="tirarModal()"> Voltar </button>
+                        </div>
+                    </div>
+                    <p class="faixa_quatorze" onclick="verFaixa(14)">
+                        goodbye
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMAÇÕES DO QUIZ  -->
+    <section class="telaQuatro" id="infQuiz">
+        <div class="info_quiz">
+            <div class="container">
+                <div class="imagem_quiz">
+                    <img src="./assets/alternative_cover.png">
+                </div>
+                <div class="texto_quiz">
+                    <h1>VOCÊ CONHECE A BILLIE?</h1>
+                    Você conhece mesmo a Billie Eilish? Descubra o quanto você sabe sobre a carreira, as músicas e as
+                    curiosidades dessa artista incrível com um quiz interativo! Responda às perguntas e veja se você
+                    é um verdadeiro fã. Realize seu cadastro e se divirta com esse quiz! Vamos lá?<br>
+                    <u onclick="fazerQuiz()">Fazer Quiz</u>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGAÇÃO DO TEMA COM A ONU -->
+    <section class="telaCinco" id="sobre">
+        <div class="sobre">
+            <div class="container">
+                <div class="texto_sobre">
+                    <h1> SOBRE MIM </h1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, quisquam saepe. Inventore expedita
+                    quibusdam, voluptates quidem commodi dolorem nihil consectetur tempora labore unde sequi corrupti,
+                    quia odio delectus! Dolor, consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Voluptate sequi excepturi dolores soluta dolor ut, ea consequuntur quaerat inventore eveniet et illo
+                    natus unde ducimus porro quidem, maiores adipisci neque. Lorem ipsum dolor, sit amet consectetur
+                    adipisicing elit. Atque enim quas magnam nostrum maxime similique assumenda id, reprehenderit, nam
+                    ratione nesciunt ut alias molestias quod dolor vero perspiciatis, esse cumque!
+                </div>
+                <div class="imagem_sobre">
+                    <img src="./assets/foto_pessoal.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPE DO SITE  -->
+    <section class="footer">
+        <div class="container">
+            <h4>Maykon Nogueira &copy; - Todos os Direitos Reservados</h4>
+            "" <br><br>
+            2024.1
+        </div>
+    </section>
+
+</body>
+
+</html>
+
+<script>
+
+    // FUNÇÃO PARA VÍDEO RODAR QUANDO USUÁRIO FICAR COM O CURSOR SOBRE A IMAGEM POR MAIS DE 3 SEGUNDOS
+    var hoverImagem = document.getElementById('fundo_foto');
+    var hoverVideo = document.getElementById('fundo_video');
+    var timer;
+
+    hoverImagem.addEventListener('mouseover', function () {
+        timer = setTimeout(function () {
+            hoverImagem.style.display = 'none';
+            hoverVideo.style.display = 'block';
+            hoverVideo.play();
+        }, 3000);
+    });
+
+    hoverImagem.addEventListener('mouseout', function () {
+        clearTimeout(timer);
+    });
+
+    hoverVideo.addEventListener('mouseout', function () {
+        hoverVideo.pause();
+        hoverVideo.currentTime = 0;
+        hoverImagem.style.display = 'block';
+        hoverVideo.style.display = 'none';
+    });
+
+    hoverVideo.addEventListener('ended', function () {
+        hoverVideo.style.display = 'none';
+        hoverImagem.style.display = 'block';
+        hoverVideo.currentTime = 0;
+    });
+
+    hoverVideo.muted = true;
+    hoverVideo.play();
+
+
+    // FUNÇÃO PARA FAZER ROLAGEM DO SITE
+    // document.querySelectorAll('.navbar a').forEach(anchor => {
+    //     anchor.addEventListener('click', function (e) {
+    //         e.preventDefault();
+
+    //         const targetId = this.getAttribute('href');
+    //         const targetPosition = document.querySelector(targetId).offsetTop;
+
+    //         window.scrollTo({
+    //             top: targetPosition,
+    //             behavior: 'smooth'
+    //         });
+    //     });
+    // });
+
+    // FUNÇÃO MODAL
+
+    // scripts.js
+    function verFaixa(faixaNumero) {
+        // Esconde todos os modais
+        const modais = document.querySelectorAll('.modal');
+        modais.forEach(modal => modal.style.display = 'none');
+
+        // Exibe o modal correspondente
+        const modalSelecionado = document.querySelector(`.modal${faixaNumero}`);
+        if (modalSelecionado) {
+            modalSelecionado.style.display = 'block';
+        }
+    }
+
+    function tirarModal() {
+        // Esconde todos os modais
+        const modais = document.querySelectorAll('.modal');
+        modais.forEach(modal => modal.style.display = 'none');
+    }
+
+    function infoEcologia() {
+        window.location = "login.html"
+    }
+
+    function fazerQuiz() {
+        window.location = "cadastro.html"
+    }
+
+</script>
