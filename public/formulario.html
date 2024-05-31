@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="icon" href="./assets/fav-icon.png">
+    <title> WWAFA | Faixa Favorita </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <div class="logo">
+                <h1>BEM VINDO(A)!</h1>
+                <img src="./assets/fav-icon.png">
+            </div>
+            <div id="opcoes_menu" class="opcoes">
+                <a href="dashboard1.html">Dashboard</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="formulario.html">Favoritos</a>
+                <a href="index.html" class="sair">Sair</a>
+            </div>
+        </div>
+        <div class="formulario">
+            <h1>Escolha uma música do álbum "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?"</h1>
+            <select id="select_faixa">
+                <option value="#"> ----- </option>
+                <option value="1"> !!!!!!!! </option>
+                <option value="2"> bad guy </option>
+                <option value="3"> xanny </option>
+                <option value="4"> you should see me in a crown </option>
+                <option value="5"> all the good girls go to hell </option>
+                <option value="6"> wish you were gay </option>
+                <option value="7"> when the party's over </option>
+                <option value="8"> 8 </option>
+                <option value="9"> my strange addiction </option>
+                <option value="10"> bury a friend </option>
+                <option value="11"> ilomilo </option>
+                <option value="12"> listen before i go </option>
+                <option value="13"> i love you </option>
+                <option value="14"> goodbye </option>
+            </select><br>
+            <button onclick="enviarFavorito()"> ESCOLHER FAVORITO </button>
+            <div class="mensagem" id="div_mensagem" style="display: none;"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function enviarFavorito() {
+        faixaSelecionada = select_faixa.value
+
+        if (faixaSelecionada == '#') {
+            div_mensagem.style.display = 'flex'
+            div_mensagem.innerHTML = "ESCOLHA UMA FAIXA PARA CONTINUAR"
+            setTimeout(function () {
+                sumirMensagem()
+            }, 2500)
+        } else {
+            div_mensagem.style.display = 'flex'
+            div_mensagem.innerHTML = "MÚSICA REGISTRADA COM SUCESSO! <br>"
+            setTimeout(function () {
+                div_mensagem.innerHTML = "REDIRECIONANDO A DASHBOARD..."
+            }, 1500);
+            setTimeout(function () {
+                window.location = "./dashboard1.html";
+            }, 3500);
+        }
+    }
+
+    function sumirMensagem() {
+        div_mensagem.style.display = 'none'
+        div_mensagem.innerHTML = ""
+    }
+</script>

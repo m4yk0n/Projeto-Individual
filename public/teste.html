@@ -6,23 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-    <link rel="stylesheet" href="./css/dashboard.css">
-    <link rel="icon" href="./assets/fav-icon.png">
-    <title>WWAFA | Dashboard</title>
+    <title> WWAFA | Dashboard</title>
 </head>
 
 <body>
     <div class="container">
         <div class="menu">
-            <div class="logo">
+            <div>
                 <h1>BEM VINDO(A)!</h1>
-                <img src="./assets/fav-icon.png">
             </div>
             <div id="opcoes_menu" class="opcoes">
                 <a href="dashboard1.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
-                <a href="index.html" class="sair">Sair</a>
+                <a href="index.html">Sair</a>
             </div>
         </div>
 
@@ -46,7 +43,7 @@
                     <div class="favoritas">
                         <h2>FAVORITOS DOS USUÁRIOS</h2>
                         <section class="grank">
-                            <canvas class="graficofav" id="grafico_favoritos" width="200" height="460"></canvas>
+                            <canvas class="graficofav" id="grafico_favoritos"></canvas>
                         </section>
                     </div>
                 </div>
@@ -55,7 +52,7 @@
                 <div class="pontuacao">
                     <h3>PONTUAÇÃO POR RODADA</h3>
                     <section class="gquiz">
-                        <canvas id="grafico_quiz" width="650" height="400"></canvas>
+                        <canvas id="grafico_quiz"></canvas>
                     </section>
                 </div>
             </div>
@@ -66,33 +63,15 @@
 </html>
 
 <script>
-    // function obterDadosGrafico(idUsuario) {
-
-    //     fetch(`/medidas/ultimas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
-
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
-
-
-
     var contextoQuiz = document.getElementById('grafico_quiz').getContext('2d');
+    contextoQuiz.canvas.width = 650;
+    contextoQuiz.canvas.height = 400;
     var chave = new Chart(
         contextoQuiz,
         {
             type: 'bar',
             data: {
-                labels: ['1ª Rodada', '2ª Rodada', '3ª Rodada', '4ª Rodada', '5ª Rodada', '6ª Rodada'],
+                labels: ['1', '2', '3', '4', '5', '6'],
                 datasets: [{
                     label: 'Acertos por Rodada',
                     data: [9, 3, 5, 10, 4, 8],
@@ -126,6 +105,8 @@
     );
 
     var contextoQuiz = document.getElementById('grafico_favoritos').getContext('2d');
+    contextoQuiz.canvas.width = 200;
+    contextoQuiz.canvas.height = 500;
 
     var chave = new Chart(
         contextoQuiz,
