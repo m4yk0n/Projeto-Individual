@@ -17,7 +17,7 @@
                 <img src="./assets/fav-icon.png">
             </div>
             <div id="opcoes_menu" class="opcoes">
-                <a href="dashboard1.html">Dashboard</a>
+                <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
                 <a href="index.html" class="sair">Sair</a>
@@ -36,51 +36,51 @@
 <script>
     const quizData = [
         {
-            question: "Qual o sobrenome de Billie?",
-            options: ["Ailash", "Eillish", "Eilish", "Eilich"],
-            answer: "Eilish"
-        },
-        {
-            question: "Billie tem como melhor amigo e produtor seu irmão...",
-            options: ["Finneas", "Logan", "Josh", "Paul"],
-            answer: "Finneas"
-        },
-        {
-            question: "Durante sua carreira, Billie lançou alguns álbuns e EP's. Quantos álbuns Billie lançou até hoje?",
-            options: ["4 álbuns", "3 álbuns", "1 álbum", "Ela não tem álbuns"],
-            answer: "3 álbuns"
-        },
-        {
-            question: "Um EP é uma espécie de álbum que contém menos músicas que um álbum convencional. Quantos EP's Eilish já lançou?",
-            options: ["Ela não tem EP", "1 EP", "5 EP'S", "2 EP'S"],
-            answer: "2 EP'S"
-        },
-        {
-            question: "Com seu debut, Billie conquistou o marco de 6 Grammy's, sendo eles de Gravação, Música, Álbum, Pop Vocal, Pop Solo e Melhor Nova Artista Do Ano. Além desses, quantos Grammy's Billie possui?",
-            options: ["15 Grammy's", "8 Grammy", "7 Grammy's", "9 Grammy's", "10 Grammy's", "12 Grammy's"],
-            answer: "9 Grammy's"
-        },
-        {
-            question: "Finneas, irmão de Billie, sempre amou produzir músicas. Com esse amor, ele produziu uma música e precisava de sua irmã para gravar a voz do som, sendo sua primeira música lançada a fazer sucesso. Qual o nome da canção?",
-            options: ["Bellyache", "Ocean Eyes", "Lovely", "Six Feed Under"],
-            answer: "Ocean Eyes"
-        },
-        {
-            question: "Qual o nome do mais recente álbum que Billie lançou?",
-            options: ["What Was I Made For?", "Hit Me Hard And Soft", "Happier Than Ever", "Guitar Songs"],
-            answer: "Hit Me Hard And Soft"
-        },
-        {
-            question: "Quando pequena, Billie era fascinada por um cantor pop. Qual era o nome dele?",
-            options: ["Jay-Z", "Justin Bieber", "Eminem", "Justin Timberlake"],
-            answer: "Justin Bieber"
-        },
-        {
-            question: "Sabendo que sua primeira música foi lançada no soundcloud sem maiores intenções de estourar, Billie conquistou várias rádios e ouvintes pelo mundo. Em que ano essa música foi lançada",
-            options: ["2015", "2015", "2019", "2014", "2016"],
-            answer: "2016"
-        },
-        {
+        //     question: "Qual o sobrenome de Billie?",
+        //     options: ["Ailash", "Eillish", "Eilish", "Eilich"],
+        //     answer: "Eilish"
+        // },
+        // {
+        //     question: "Billie tem como melhor amigo e produtor seu irmão...",
+        //     options: ["Finneas", "Logan", "Josh", "Paul"],
+        //     answer: "Finneas"
+        // },
+        // {
+        //     question: "Durante sua carreira, Billie lançou alguns álbuns e EP's. Quantos álbuns Billie lançou até hoje?",
+        //     options: ["4 álbuns", "3 álbuns", "1 álbum", "Ela não tem álbuns"],
+        //     answer: "3 álbuns"
+        // },
+        // {
+        //     question: "Um EP é uma espécie de álbum que contém menos músicas que um álbum convencional. Quantos EP's Eilish já lançou?",
+        //     options: ["Ela não tem EP", "1 EP", "5 EP'S", "2 EP'S"],
+        //     answer: "2 EP'S"
+        // },
+        // {
+        //     question: "Com seu debut, Billie conquistou o marco de 6 Grammy's, sendo eles de Gravação, Música, Álbum, Pop Vocal, Pop Solo e Melhor Nova Artista Do Ano. Além desses, quantos Grammy's Billie possui?",
+        //     options: ["15 Grammy's", "8 Grammy", "7 Grammy's", "9 Grammy's", "10 Grammy's", "12 Grammy's"],
+        //     answer: "9 Grammy's"
+        // },
+        // {
+        //     question: "Finneas, irmão de Billie, sempre amou produzir músicas. Com esse amor, ele produziu uma música e precisava de sua irmã para gravar a voz do som, sendo sua primeira música lançada a fazer sucesso. Qual o nome da canção?",
+        //     options: ["Bellyache", "Ocean Eyes", "Lovely", "Six Feed Under"],
+        //     answer: "Ocean Eyes"
+        // },
+        // {
+        //     question: "Qual o nome do mais recente álbum que Billie lançou?",
+        //     options: ["What Was I Made For?", "Hit Me Hard And Soft", "Happier Than Ever", "Guitar Songs"],
+        //     answer: "Hit Me Hard And Soft"
+        // },
+        // {
+        //     question: "Quando pequena, Billie era fascinada por um cantor pop. Qual era o nome dele?",
+        //     options: ["Jay-Z", "Justin Bieber", "Eminem", "Justin Timberlake"],
+        //     answer: "Justin Bieber"
+        // },
+        // {
+        //     question: "Sabendo que sua primeira música foi lançada no soundcloud sem maiores intenções de estourar, Billie conquistou várias rádios e ouvintes pelo mundo. Em que ano essa música foi lançada",
+        //     options: ["2011", "2015", "2019", "2014", "2016"],
+        //     answer: "2016"
+        // },
+        // {
             question: "Billie conquistou o Oscar por 'No Time To Die', música tema do filme do 007. Em 2024, Billie retornou a conquistar outro Oscar pela música tema do filme 'Barbie'. Que música era essa?",
             options: ["TV", "Ocean Eyes", "What Was I Made For?", "Blue", "Kennergy"],
             answer: "What Was I Made For?"
@@ -131,6 +131,8 @@
             document.getElementById("quiz").innerHTML = `
                 <h1>Quiz Concluído</h1>
                 <p>Você acertou ${scoreVar} de um total de ${quizData.length} questões</p>
+                <p>Para visualização de resultados anteriores,</p>
+                <a href="./dashboard.html">RETORNE A DASHBOARD</a>
                 <button id="restart" onclick="reiniciarQuiz()">Recomeçar Quiz</button>
             `;
         }

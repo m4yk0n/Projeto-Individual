@@ -17,7 +17,7 @@
                 <img src="./assets/fav-icon.png">
             </div>
             <div id="opcoes_menu" class="opcoes">
-                <a href="dashboard1.html">Dashboard</a>
+                <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
                 <a href="index.html" class="sair">Sair</a>
@@ -26,7 +26,7 @@
         <div class="formulario">
             <h1>Escolha uma música do álbum "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?"</h1>
             <select id="select_faixa">
-                <option value="#"> ----- </option>
+                <option value="0"> ----- </option>
                 <option value="1"> !!!!!!!! </option>
                 <option value="2"> bad guy </option>
                 <option value="3"> xanny </option>
@@ -42,7 +42,7 @@
                 <option value="13"> i love you </option>
                 <option value="14"> goodbye </option>
             </select><br>
-            <button onclick="enviarFavorito()"> ESCOLHER FAVORITO </button>
+            <button onclick="envFavorito()"> ESCOLHER FAVORITO </button>
             <div class="mensagem" id="div_mensagem" style="display: none;"></div>
         </div>
     </div>
@@ -51,29 +51,93 @@
 </html>
 
 <script>
-    function enviarFavorito() {
+    let faixa1 = 0
+    let faixa2 = 0
+    let faixa3 = 0
+    let faixa4 = 0
+    let faixa5 = 0
+    let faixa6 = 0
+    let faixa7 = 0
+    let faixa8 = 0
+    let faixa9 = 0
+    let faixa10 = 0
+    let faixa11 = 0
+    let faixa12 = 0
+    let faixa13 = 0
+    let faixa14 = 0
+
+    function envFavorito() {
         faixaSelecionada = select_faixa.value
 
-        if (faixaSelecionada == '#') {
+        if (faixaSelecionada == 0) {
             div_mensagem.style.display = 'flex'
             div_mensagem.innerHTML = "ESCOLHA UMA FAIXA PARA CONTINUAR"
             setTimeout(function () {
                 sumirMensagem()
             }, 2500)
         } else {
+            for (i = 1; i < select_faixa.length; i++) {
+                if (faixaSelecionada > 0) {
+                    const faixaSelecionadaInt = parseInt(faixaSelecionada);
+                    if (faixaSelecionadaInt == i) {
+                        eval(`faixa${i} = 1`);
+                    } else {
+                        eval(`faixa${i} = 0`);
+                    }
+                }
+            }
+            enviarFormulario()
+
+
+
             div_mensagem.style.display = 'flex'
             div_mensagem.innerHTML = "MÚSICA REGISTRADA COM SUCESSO! <br>"
             setTimeout(function () {
                 div_mensagem.innerHTML = "REDIRECIONANDO A DASHBOARD..."
             }, 1500);
             setTimeout(function () {
-                window.location = "./dashboard1.html";
+                window.location = "./dashboard.html";
             }, 3500);
         }
+
+
     }
 
     function sumirMensagem() {
         div_mensagem.style.display = 'none'
         div_mensagem.innerHTML = ""
+    }
+
+    function enviarFormulario() {
+        fetch("/formulario/enviarFavorito", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                usuarioServer: sessionStorage.ID_USUARIO,
+                faixa1Server: faixa1,
+                faixa2Server: faixa2,
+                faixa3Server: faixa3,
+                faixa4Server: faixa4,
+                faixa5Server: faixa5,
+                faixa6Server: faixa6,
+                faixa7Server: faixa7,
+                faixa8Server: faixa8,
+                faixa9Server: faixa9,
+                faixa10Server: faixa10,
+                faixa11Server: faixa11,
+                faixa12Server: faixa12,
+                faixa13Server: faixa13,
+                faixa14Server: faixa14
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            
     }
 </script>

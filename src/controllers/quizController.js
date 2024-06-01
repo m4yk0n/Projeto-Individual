@@ -1,20 +1,25 @@
 var quizModel = require("../models/quizModel");
 
-function buscarUsuarioPorId(req, res) {
-    var idUsuario = req.body.usuarioServer;
 
-    quizModel.buscarUsuarioPorId(idUsuario).then((resultado) => {
+function buscarUsuario(req, res) {
+
+    var idUsuario = req.params.idUsuario;
+
+    console.log(`Buscando o usuário pelo id`);
+
+    quizModel.buscarUsuario(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado);
+            res.status(200).json(resultado); /*resposta que o bd traz*/
         } else {
-            res.status(204).json([]);
+            res.status(204).send("Nenhum resultado encontrado!")
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar o usuário: ", erro.sqlMessage);
+        console.log("Houve um erro ao buscar as ultimos resultados.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 
 function verResultado(req, res) {
     quizModel.verResultado().then(function (resultado) {
@@ -26,7 +31,7 @@ function verResultado(req, res) {
 
 function enviarResultado(req, res) {
     var resultadoQuiz = req.body.scoreServer;
-    var idUsuario = req.body.usuarioServer
+    var idUsuario = req.body.usuarioServer;
 
     if (resultadoQuiz == undefined || idUsuario == undefined) {
         res.status(400).send("O resultado está undefined!");
@@ -41,7 +46,7 @@ function enviarResultado(req, res) {
 }
 
 module.exports = {
-    buscarUsuarioPorId,
+    buscarUsuario,
     verResultado,
     enviarResultado
 }

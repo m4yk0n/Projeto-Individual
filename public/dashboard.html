@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="icon" href="./assets/fav-icon.png">
+    <title>WWAFA | Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <div class="logo">
+                <h1>BEM VINDO(A)!</h1>
+                <img src="./assets/fav-icon.png">
+            </div>
+            <div id="opcoes_menu" class="opcoes">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="formulario.html">Favoritos</a>
+                <a href="index.html" class="sair">Sair</a>
+            </div>
+        </div>
+
+        <div class="dash">
+            <div class="kpis">
+                <div id="1" class="kpi1">
+                    <p>ÚLTIMA PONTUAÇÃO</p>
+                    <span id="span_ultima_pontuacao"></span>
+                    <u id="u_msg"></u>
+                </div>
+                <div id="2" class="kpi2">
+                    <p>MAIOR PONTUAÇÃO</p>
+                    <span id="span_maior_pontuacao"></span>
+                    <u id="u_rodada_maior"></u>
+                </div>
+                <div id="3" class="kpi3">
+                    <p>MENOR PONTUAÇÃO</p>
+                    <span id="span_menor_pontuacao"></span>
+                    <u id="u_rodada_menor"></u>
+                </div>
+                <div id="4" class="kpi4">
+                    <p>MAIS POPULAR</p>
+                    <span id="span_popular"></span>
+                    <u id="u_msc_popular"></u>
+                </div>
+                <div id="5" class="kpi5">
+                    <p>MÚSICA FAVORITA</p>
+                    <span id="span_favorito_usuario"></span>
+                </div>
+            </div>
+            <div class="graficos">
+                <div class="pontuacao">
+                    <h3>PONTUAÇÃO POR RODADA</h3>
+                    <section class="gquiz">
+                        <canvas id="graficoQuiz" width="650" height="400"></canvas>
+                    </section>
+                </div>
+                <div class="ranking">
+                    <h2>FAVORITOS DOS USUÁRIOS</h2>
+                    <section class="grank">
+                        <canvas class="graficofav" id="grafico_favoritos" width="200" height="260"></canvas>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    let faixasFavoritas = ["!!!!!!!!",
+        "bad guy",
+        "xanny",
+        "you should see me in a crown",
+        "all the good girls go to hell",
+        "wish you were gay",
+        "when the party's over",
+        "8",
+        "my strange addiction",
+        "bury a friend",
+        "ilomilo",
+        "listen before i go",
+        "i love you",
+        "goodbye"]
+
+
+    function buscarDadosUsuario() {
+
+        const idUsuario = sessionStorage.ID_USUARIO;
+
+        if (!idUsuario) {
+            console.error('ID de usuário não definido');
+            return;
+        }
+
+        // DADOS DO QUIZ
+        fetch(`/quiz/buscarUsuario/${idUsuario}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw new Error("Houve um erro ao tentar trazer o resultado");
+                }
+            })
+            .then(function (data) {
+                if (data.length === 0) {
+                    console.warn("Nenhum resultado encontrado");
+                    return;
+                }
+
+                // Atualizar o gráfico com os dados recebidos
+                atualizarGrafico(data);
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
+
+
+
+        // DADOS DO FORMULARIO 
+        fetch(`/formulario/buscarFavorito/${idUsuario}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw new Error("Houve um erro ao tentar trazer o resultado");
+                }
+            })
+            .then(function (data) {
+                if (data.length === 0) {
+                    console.warn("Nenhum resultado encontrado");
+                    return;
+                }
+
+                // Atualizar o gráfico com os dados recebidos
+                atualizarKPI(data);
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
+    }
+
+    function atualizarKPI(dadosFav) {
+        // Pega o índice da faixa favorita do último envio de formulário
+        const ultimoEnvio = dadosFav[dadosFav.length - 1];
+        const indiceFaixaFavorita = Object.values(ultimoEnvio).indexOf(1);
+
+        // Exibe a faixa favorita no HTML
+        const faixaFavorita = faixasFavoritas[indiceFaixaFavorita];
+        span_favorito_usuario.innerHTML = faixaFavorita;
+
+    }
+
+
+
+    // Criar o gráfico de barras
+    const ctx = document.getElementById('graficoQuiz').getContext('2d');
+    const graficoQuiz = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [], // Adicione os labels conforme necessário
+            datasets: [{
+                label: 'Acertos',
+                data: [],
+                backgroundColor: '#00ff2a',
+                borderColor: 'transparent',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    function atualizarGrafico(dados) {
+        // Se houver mais de 10 dados, manter apenas os 10 mais recentes
+        if (dados.length > 10) {
+            dados = dados.slice(-10);
+        }
+        let ultimaTentativa = dados[dados.length-1].qtdAcertos
+        let msgPontos = "Mais sorte na próxima!"
+
+        graficoQuiz.data.labels = [];
+        graficoQuiz.data.datasets[0].data = [];
+
+        // Puxando os dados de quantidade de acertos para fazer a maior pontuação, começando sempre com o primerio dado
+        let maiorPontuacao = Number(dados[0].qtdAcertos)
+        let rodadaMaior = 0
+        // Puxando os dados para menor pontuação
+        let menorPontuacao = Number(dados[0].qtdAcertos)
+        let rodadaMenor = 0
+
+        // Adiciona os dados ao gráfico
+        for (let i = 0; i < dados.length; i++) {
+            const numeroTentativa = i + 1; // Calcula o número da tentativa com base no índice atual
+            graficoQuiz.data.labels.push(`${numeroTentativa}ª Rodada`);
+            graficoQuiz.data.datasets[0].data.push(dados[i].qtdAcertos);
+
+            // Define que quando um novo dado for maior que o anterior, ele será a maior pontuação
+            if (dados[i].qtdAcertos >= maiorPontuacao) {
+                maiorPontuacao = dados[i].qtdAcertos
+                rodadaMaior = i
+                // console.log(`A maior pontuação foi de ${maiorPontuacao} na ${rodadaMaior} rodada`)
+            }
+            if (dados[i].qtdAcertos <= menorPontuacao) {
+                menorPontuacao = dados[i].qtdAcertos
+                rodadaMenor = i + 1
+                // console.log(`A menor pontuação foi de ${menorPontuacao} na ${rodadaMenor} rodada`)
+            }
+
+        }
+
+        if (ultimaTentativa > 7) {
+            msgPontos = "Mandou bem!"
+        } else if (ultimaTentativa > 4) {
+            msgPontos = "Nada mal!"
+        }
+
+        // Enviando dados para KPI
+        span_maior_pontuacao.innerHTML = `${maiorPontuacao}/10`
+        span_menor_pontuacao.innerHTML = `${menorPontuacao}/10`
+        span_ultima_pontuacao.innerHTML = `${ultimaTentativa}/10`
+        u_rodada_maior.innerHTML = `${rodadaMaior}ª Rodada`
+        u_rodada_menor.innerHTML = `${rodadaMenor}ª Rodada`
+        u_msg.innerHTML = msgPontos
+        // Atualiza o gráfico
+        graficoQuiz.update();
+    }
+
+
+    // Chamar a função para buscar os dados do usuário e atualizar o gráfico
+    buscarDadosUsuario();
+
+    setInterval(buscarDadosUsuario, 10000);
+
+
+    function atualizarGraficoFavoritos(dados) {
+        console.log("Dados recebidos para o gráfico de favoritos:", dados);
+
+        const ctx = document.getElementById('grafico_favoritos').getContext('2d');
+
+        // Extrair os votos de favoritos dos dados recebidos e converter para números inteiros
+        const votosFormulario = Object.values(dados[0]).map(Number);
+        let maisVotado = 0;
+        let qtdVotos = 0;
+
+        // CALCULA QUAL FOI A FAIXA MAIS VOTADA
+        for (let i = 0; i < votosFormulario.length; i++) {
+            if (votosFormulario[i] > maisVotado) {
+                maisVotado = votosFormulario[i];
+                qtdVotos = i;
+            }
+        }
+
+        // PEGA O NOME DA FAIXA
+        const nomeMaisVotado = faixasFavoritas[qtdVotos];
+
+        const graficoFavoritos = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['!!!!!!!', 'bad guy', 'xanny', 'you should see me in a crown', 'all the good girls go to hell', 'wish you were gay', 'when the partys over', '8', 'my strange addiction', 'bury a friend', 'listen before i go', 'i love you', 'goodbye'],
+                datasets: [{
+                    label: 'Votos dos usuários',
+                    data: votosFormulario,
+                    borderColor: 'transparent',
+                    backgroundColor: '#00ff2a',
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: 'red'
+                        }
+                    }
+                },
+                animation: {
+                    duration: 0
+                },
+            }
+        });
+
+        // EXIBE A FAIXA E OS VOTOS
+        span_popular.innerHTML = nomeMaisVotado;
+        u_msc_popular.innerHTML = `${maisVotado} Votos`;
+    }
+
+
+
+
+    function buscarDadosFavoritos() {
+        fetch("/formulario/verFavorito", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw new Error("Houve um erro ao tentar trazer o resultado");
+                }
+            })
+            .then(function (data) {
+                if (data.length === 0) {
+                    console.warn("Nenhum resultado encontrado");
+                    return;
+                }
+
+                // Atualizar o gráfico com os dados recebidos
+                atualizarGraficoFavoritos(data);
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
+    }
+
+    // Chame a função para buscar os dados e atualizar o gráfico
+    buscarDadosFavoritos();
+
+
+</script>

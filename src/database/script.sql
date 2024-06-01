@@ -12,8 +12,8 @@ CREATE TABLE usuario (
 CREATE TABLE quiz (
     idTentativa INT AUTO_INCREMENT PRIMARY KEY,
     fkUsuario INT,
-    qtdPerguntas INT DEFAULT 10,
     qtdAcertos INT,
+    dtTentativa DATETIME DEFAULT NOW(),
     FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
@@ -21,13 +21,8 @@ select * from usuario;
 
 select * from quiz;
 
-
-
-
-
-
-
-
+select q.dtTentativa, q.qtdAcertos, u.nome from usuario as u
+inner join quiz as q where u.idUsuario = q.fkUsuario;
 
 
 
