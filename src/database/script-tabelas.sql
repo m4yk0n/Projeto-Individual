@@ -1,63 +1,53 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+create database WWAFA;
 
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14)
-);
+use WWAFA;
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
+    email VARCHAR(50),
+    senha VARCHAR(50)
 );
 
-alter table usuario add column cpf varchar(50);
+CREATE TABLE quiz (
+    idTentativa INT AUTO_INCREMENT PRIMARY KEY,
+    fkUsuario INT,
+    qtdAcertos INT,
+    dtTentativa DATETIME DEFAULT NOW(),
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+);
+
+CREATE TABLE formulario (
+	idEnvio INT AUTO_INCREMENT PRIMARY KEY,
+    fkUsuario INT,
+    faixa1 INT,
+    faixa2 INT,
+    faixa3 INT,
+    faixa4 INT,
+    faixa5 INT,
+    faixa6 INT,
+    faixa7 INT,
+    faixa8 INT,
+    faixa9 INT,
+    faixa10 INT,
+    faixa11 INT,
+    faixa12 INT,
+    faixa13 INT,
+    faixa14 INT,
+    dtEnvio DATETIME DEFAULT NOW(),
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+);
+
 select * from usuario;
 
+select * from quiz;
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);
+select * from formulario;
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
-);
+SELECT SUM(faixa1), SUM(faixa2), SUM(faixa3), SUM(faixa4), SUM(faixa5), SUM(faixa6), SUM(faixa7), SUM(faixa8), SUM(faixa9), SUM(faixa10), SUM(faixa11), SUM(faixa12), SUM(faixa13), SUM(faixa14) FROM formulario;
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+select q.dtTentativa, q.qtdAcertos, u.nome from usuario as u
+inner join quiz as q where u.idUsuario = q.fkUsuario;
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
 
-insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
+

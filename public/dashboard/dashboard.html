@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <link rel="stylesheet" href="./css/dashboard.css">
-    <link rel="icon" href="./assets/fav-icon.png">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../assets/fav-icon.png">
     <title>WWAFA | Dashboard</title>
 </head>
 
@@ -16,13 +16,13 @@
         <div class="menu">
             <div class="logo">
                 <h1>BEM VINDO(A)!</h1>
-                <img src="./assets/fav-icon.png">
+                <img src="../assets/fav-icon.png">
             </div>
             <div id="opcoes_menu" class="opcoes">
                 <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
-                <a href="index.html" class="sair">Sair</a>
+                <a href="../index.html" class="sair">Sair</a>
             </div>
         </div>
 
@@ -220,7 +220,7 @@
             // Define que quando um novo dado for maior que o anterior, ele será a maior pontuação
             if (dados[i].qtdAcertos >= maiorPontuacao) {
                 maiorPontuacao = dados[i].qtdAcertos
-                rodadaMaior = i
+                rodadaMaior = i + 1
                 // console.log(`A maior pontuação foi de ${maiorPontuacao} na ${rodadaMaior} rodada`)
             }
             if (dados[i].qtdAcertos <= menorPontuacao) {
@@ -252,7 +252,7 @@
     // Chamar a função para buscar os dados do usuário e atualizar o gráfico
     buscarDadosUsuario();
 
-    setInterval(buscarDadosUsuario, 10000);
+    setInterval(buscarDadosUsuario, 5000);
 
 
     function atualizarGraficoFavoritos(dados) {
@@ -343,6 +343,9 @@
 
     // Chame a função para buscar os dados e atualizar o gráfico
     buscarDadosFavoritos();
+
+    setInterval(buscarDadosFavoritos, 5000);
+
 
 
 </script>
