@@ -22,7 +22,7 @@
                 <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
-                <a href="../index.html" class="sair">Sair</a>
+                <a href="../index.html" class="sair" onclick="limparSessao()">Sair</a>
             </div>
         </div>
 
@@ -50,7 +50,7 @@
                 </div>
                 <div id="5" class="kpi5">
                     <p>MÚSICA FAVORITA</p>
-                    <span id="span_favorito_usuario"></span>
+                    <span id="span_favorito_usuario" onclick="musicaDash()"></span>
                 </div>
             </div>
             <div class="graficos">
@@ -62,6 +62,7 @@
                 </div>
                 <div class="ranking">
                     <h2>FAVORITOS DOS USUÁRIOS</h2>
+                    <img src="" alt="">
                     <section class="grank">
                         <canvas class="graficofav" id="grafico_favoritos" width="200" height="260"></canvas>
                     </section>
@@ -74,6 +75,8 @@
 </html>
 
 <script>
+    let musicaFundo;
+    let comecarMusica = false
 
     let faixasFavoritas = ["!!!!!!!!",
         "bad guy",
@@ -166,6 +169,69 @@
         const faixaFavorita = faixasFavoritas[indiceFaixaFavorita];
         span_favorito_usuario.innerHTML = faixaFavorita;
 
+        musicaDash(faixaFavorita)
+    }
+    
+    
+    function musicaDash(nomeFaixa) {
+    
+        if (nomeFaixa == '!!!!!!!!' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/!!!!!!!!-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'bad guy' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/bad_guy-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'xanny' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/xanny-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'you should see me in a crown' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/you_should_see_me_in_a_crown-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'all the good girls go to hell' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/all_the_good_girls_do_to_hell-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'wish you were gay' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/wish_you_were_gay-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == "when the party's over" && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/when_the_partys_over-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == '8' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/8-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'my strange addiction' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/my_strange_addiction-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'bury a friend' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/bury_a_friend-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'ilomilo' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/ilomilo-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'listen before i go' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/listen_before_i_go-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'i love you' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/i_love_you-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } else if (nomeFaixa == 'goodbye' && comecarMusica == false) {
+            musicaFundo = new Audio('../assets/goodbye-instrumental.mp3');
+            musicaFundo.play();
+            comecarMusica = true;
+        } 
     }
 
 
@@ -294,9 +360,6 @@
                     },
                     y: {
                         beginAtZero: true,
-                        ticks: {
-                            color: 'red'
-                        }
                     }
                 },
                 animation: {

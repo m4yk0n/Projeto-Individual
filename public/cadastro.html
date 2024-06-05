@@ -4,114 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cadastro.css">
     <link rel="icon" href="./assets/fav-icon.png">
     <script src="./js/sessao.js"></script>
 
     <title> WWAFA | Cadastro </title>
 </head>
-
 <body>
-
-    <body>
-        <!-- TELA DE LOGIN + NAVBAR FIXA -->
-        <div class="voltar_site">
-            <a href="./index.html">
-                < Voltar </a>
+    <div class="modal1 modal">
+        <div class="contentmodal" id="modal_erro">
         </div>
-        <section class="telaLogin" id="loginSite">
-            <div class="login">
-                <div class="alerta_erro">
-                    <div class="card_erro" id="cardErro">
-                        <span id="mensagem_erro"></span>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="card_cadastro">
-                        <h1>Bem Vindo!</h1>
-                    </div>
-                    <div class="input_usuario">
-                        <div class="campo">
-                            <span>Nome Completo:</span>
-                            <input type="text" id="input_nome" placeholder="Seu nome"><br>
-                        </div>
-                        <div class="campo">
-                            <span>E-mail:</span>
-                            <input type="text" id="input_email" placeholder="seuemail@gmail.com"><br>
-                        </div>
-                        <div class="campo">
-                            <span>Senha:</span>
-                            <input type="password" id="input_senha" placeholder="********"><br>
-                        </div>
-                        <div class="campo">
-                            </span>Confirmar Senha:</span>
-                            <input type="password" id="input_confirmar_senha" placeholder="********"><br>
-                        </div>
-                        <button onclick="cadastrar()" class="botao">
-                            Cadastrar
-                        </button>
-                        <div id="div_aguardar" class="loading-div">
-                            <img src="./assets/circle-loading.gif" id="loading-gif" />
-                        </div>
-                        <div id="div_erros_login"></div>
-                        <div class="login_cad">
-                            Já é cadastado?<br>
-                            <a href="./login.html">Faça login</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-    </body>
+    </div>
+    <div class="modal2 modal">
+        <div class="contentmodal" id="modal_exito">
+            CADASTRO REALIZADO COM SUCESSO!
+        </div>
+    </div>
 
+    <section class="telaCadastro">
+        <ul class="navbar">
+            <li><a href="./index.html#sobreAlbum">Álbum</a></li>
+            <li><a href="./index.html#analiseFaixas">Faixas</a></li>
+            <li><a href="./index.html#infQuiz">Quiz</a></li>
+            <li><a href="./index.html"><img src="./assets/album_title.png"></a></li>
+            <li><a href="./index.html#sobre">Sobre</a></li>
+            <li><a href="./login.html">Login</a></li>
+            <li><a id="atual" href="./cadastro.html">Cadastro</a></li>
+        </ul>
+        <div class="cadastro">
+            <div class="imagem_cadastro">
+                <img src="./assets/alternative_cover.png" class="imagem-cover">
+            </div>
+            <div class="container">
+                <div class="titulo">
+                    <h1>BEM VINDO!</h1>
+                </div>
+                <div class="inputs_usuario">
+                    <div class="campo">
+                        <span>Nome Completo:</span>
+                        <input type="text" id="input_nome" placeholder="Seu nome"><br>
+                    </div>
+                    <div class="campo">
+                        <span>E-mail:</span>
+                            <input type="text" id="input_email" placeholder="seuemail@gmail.com"><br>
+                    </div>
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input type="password" id="input_senha" placeholder="********"><br>
+                    </div>
+                    <div class="campo">
+                        <span>Confirmar Senha:</span>
+                        <input type="password" id="input_confirmar_senha" placeholder="********"><br>
+                    </div>
+                    <button onclick="cadastrar()" class="botao">
+                        CADASTRAR
+                    </button>
+                    <div class="login_cadastro">
+                        Já tem uma conta? <br>
+                        <a href="./login.html">Entrar</a>
+                    </div>
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/aguarde-pink3.gif" id="loading-gif" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
 </html>
 
 <script>
+
+    let caracteresEspeciais = ['@', '.', '*', '#', '$', '&']
+    let letrasMaiusculas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
     function cadastrar() {
         aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = input_nome.value;
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
-        var confirmacaoSenhaVar = input_confirmar_senha.value;
-        var arrobaEmail = emailVar.indexOf('@')
-        var pontoEmail = emailVar.indexOf('.')
+        let nomeVar = input_nome.value;
+        let emailVar = input_email.value;
+        let senhaVar = input_senha.value;
+        let confirmacaoSenhaVar = input_confirmar_senha.value;
+        let arrobaEmail = emailVar.indexOf('@')
+        let pontoEmail = emailVar.indexOf('.')
+        let validacaoSenha = false
 
-        if (
-            nomeVar.length <= 1 ||
-            arrobaEmail == -1 ||
-            pontoEmail == -1 ||
-            senhaVar != confirmacaoSenhaVar
-        ) {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Campos preenchidos incorretamente)";
 
-            setInterval(sumirMensagem, 5000);
-            finalizarAguardar();
-            return false;
 
-        } else if (
-            nomeVar == "" ||
+        if (nomeVar == "" ||
             emailVar == "" ||
             senhaVar == "" ||
             confirmacaoSenhaVar == ""
         ) {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Mensagem de erro para todos os campos em branco)";
-
-            finalizarAguardar();
+            modal_erro.innerHTML = "PREENCHA TODOS OS CAMPOS PARA CONTINUAR!"
+            validarSessao(1)
+            return false;
+        }
+        if (pontoEmail == - 1 || arrobaEmail == -1) {
+            modal_erro.innerHTML = "O E-MAIL DEVE CONTER UM @ E UM '.'!"
+            validarSessao(1)
+            return false;
+        }
+        if (senhaVar.length < 8) {
+            modal_erro.innerHTML = "A SENHA PRECISA CONTER NO MÍNIMO OITO CARACTÉRES!"
+            validarSessao(1)
+            return;
+        } else if (senhaVar != confirmacaoSenhaVar) {
+            modal_erro.innerHTML = "SENHAS INCOMPATÍVEIS!"
+            validarSessao(1)
             return false;
         } else {
-            setInterval(sumirMensagem, 5000);
+
+            for (let caractereAtual = 0; caractereAtual < caracteresEspeciais.length; caractereAtual++) {
+                if (senhaVar.indexOf(caracteresEspeciais[caractereAtual]) !== -1) {
+                    validacaoSenha = true
+                    break;
+                }
+            }
+            if (validacaoSenha == false) {
+                modal_erro.innerHTML = "A SENHA PRECISA CONTER AO MENOS UM CARACTER ESPECIAL!"
+                validarSessao(1)
+                return false;
+            }
+
+            validacaoSenha = false;
+            for (let caractereAtual = 0; caractereAtual < letrasMaiusculas.length; caractereAtual++) {
+                if (senhaVar.indexOf(letrasMaiusculas[caractereAtual]) !== -1) {
+                    validacaoSenha = true
+                    break;
+                }
+            }
+            if (validacaoSenha == false) {
+                modal_erro.innerHTML = "A SENHA PRECISA CONTER UMA LETRA MAIUSCULA!"
+                validarSessao(1)
+                return false;
+            }
+
+            validacaoSenha = false;
+            for (let numAtual = 0; numAtual <= 9; numAtual++) {
+                if (senhaVar.indexOf(numAtual) !== -1) {
+                    validacaoSenha = true
+                    break;
+                }
+            }
+            if (validacaoSenha == false) {
+                modal_erro.innerHTML = "A SENHA PRECISA CONTER UM NÚMERO!"
+                validarSessao(1)
+                return false;
+            }
+
         }
+        if (validacaoSenha == true) {
+            cadastrarUsuario(nomeVar, emailVar, senhaVar)
+        }
+    }
 
 
-
+    function cadastrarUsuario(nomeVar, emailVar, senhaVar) {
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -130,17 +182,8 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    cardErro.style.display = "block";
+                    validarSessao(2)
 
-                    mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
-
-                    limparFormulario();
-                    finalizarAguardar();
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
@@ -153,7 +196,40 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none";
+    function validarSessao(numResposta) {
+
+        // Esconde todos os modais
+        const modais = document.querySelectorAll('.modal');
+        modais.forEach(modal => modal.style.display = 'none');
+
+        // Exibe o modal correspondente
+        const modalSelecionado = document.querySelector(`.modal${numResposta}`);
+        if (modalSelecionado) {
+            modalSelecionado.style.display = 'block';
+        }
+
+        if (numResposta == 1) {
+            setTimeout(function () {
+                sumirModal()
+                finalizarAguardar();
+                return false;
+            }, 2500)
+        }
+        else (
+            setTimeout(function () {
+                modal_exito.innerHTML = "REDIRECIONANDO A TELA DE LOGIN..."
+                setTimeout(function () {
+                    window.location = "./login.html";
+                }, 3500);
+                finalizarAguardar();
+                return false;
+            }, 2500)
+        )
     }
+
+    function sumirModal() {
+        const modais = document.querySelectorAll('.modal');
+        modais.forEach(modal => modal.style.display = 'none');
+    }
+
 </script>

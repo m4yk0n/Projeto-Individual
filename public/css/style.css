@@ -15,27 +15,26 @@ body {
     background-color: #000000;
 }
 
-.inicio .navbar {
-    background-color: #00000000;
-    height: 110px;
-    width: 100%;
-    padding: 0;
-}
-
-.navbar a {
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .navbar {
-    margin-right: 500px;
+    background-color: #0000007e;
+    height: 148px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-shadow: 1px 0px 10rem #000000;
     position: fixed;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     list-style: none;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .navbar img {
@@ -159,26 +158,50 @@ body {
 
 
 .analise_faixas .container {
-    width: 100%;
     height: 930px;
     display: flex;
     align-items: center;
 }
 
-.container .faixas_esquerda {
+.faixas_esquerda {
+    width: 100%;
     gap: 55px;
     display: flex;
     flex-direction: column;
-    margin-left: 150px;
     text-align: left;
+    margin: 80px;
+}
+
+.titulo_analise {
+    color: #373737;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+}
+
+.titulo_analise:hover {
+    color: #ffffffa7;
+    transition: all 0.5s;
+    cursor: default;
+}
+
+.titulo_telaFaixa {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50rem;
 }
 
 .faixas_direita {
+    width: 100%;
     gap: 55px;
     display: flex;
     flex-direction: column;
-    margin-left: 1130px;
     text-align: right;
+    margin: 80px;
 }
 
 
@@ -220,11 +243,13 @@ body {
     color: #ffffff;
     font-size: 22px;
     display: flex;
-    width: 55%;
-    margin-right: 210px;
+    width: 40%;
+    height: 15%;
     justify-content: end;
     text-align: end;
+    margin-left: 9px;
     flex-direction: column;
+
 }
 
 .texto_quiz h1 {
@@ -232,12 +257,17 @@ body {
     justify-content: end;
 }
 
+.texto_quiz u:hover{
+    cursor: pointer;
+    color: #00ff2a;
+    transition: all 0.5s;
+}
+
 .imagem_quiz {
     display: flex;
-    width: 100%;
-    height: 550px;
-    padding-left: 200px;
+    width: 55%;    
 }
+
 
 .telaCinco {
     width: 100%;
@@ -460,7 +490,7 @@ body {
 .contentmodal{
     background-color: #ffffffa8;
     color: #000000;
-    margin: 15% auto;
+    margin: 6% auto;
     padding: 20px;
     width: 45%;
     display: flex;
@@ -501,6 +531,12 @@ body {
     color: #000000;
     transition: all 0.5s;
     cursor: pointer;
+}
+
+.contentmodal span {
+    display: flex;
+    width: 45rem;
+    text-align: center;
 }
 
 .modal1{
@@ -671,3 +707,9 @@ body {
     background-color:#554f4f91;
 }
 
+.video_modal {
+    background-color: #00ff2a;
+    width: 880px;
+    height: 400px;
+    display: flex;
+}
