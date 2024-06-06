@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="icon" href="../assets/fav-icon.png">
+    <script src="../js/sessao.js"></script>
     <title> WWAFA | Quiz Billie </title>
 </head>
 
@@ -14,13 +15,17 @@
         <div class="menu">
             <div class="logo">
                 <h1>BEM VINDO(A)!</h1>
-                <img src="../assets/fav-icon.png">
+                <div class="blohsh-container">
+                    <img src="../assets/fav-icon.png">
+                    <div class="tooltip">Olá, <span id="p_usuario"></span>!, me chamo <u>Blohsh</u>, e simbolizo a Billie desde o início de sua carreira! <br> <a href="../sobre.html#origemBlohsh">Que tal saber mais sobre minha origem?</a></div>
+                </div>
             </div>
             <div id="opcoes_menu" class="opcoes">
                 <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
-                <a href="../index.html" class="sair" onclick="limparSessao()">Sair</a>
+                <a href="../index.html">Início</a>
+                <a class="sair" onclick="limparSessao()">Sair</a>
             </div>
         </div>
         <div class="container-quiz">
@@ -34,6 +39,9 @@
     </div>
 </body>
 <script>
+    let nomeUsuario = sessionStorage.NOME_USUARIO
+    p_usuario.innerHTML = nomeUsuario
+
     const quizData = [
         {
             question: "Qual o sobrenome de Billie?",

@@ -15,13 +15,19 @@
         <div class="inicio">
             <div class="container">
                 <ul class="navbar">
-                    <li><a href="#sobreAlbum">Álbum</a></li>
-                    <li><a href="#analiseFaixas">Faixas</a></li>
-                    <li><a href="#infQuiz">Quiz</a></li>
-                    <li><a href="#inicioSite"><img src="./assets/album_title.png"></a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="./login.html">Login</a></li>
-                    <li><a href="./cadastro.html">Cadastro</a></li>
+                    <li><a href="./index.html#sobreAlbum">Álbum</a></li>
+                    <li><a href="./index.html#analiseFaixas">Faixas</a></li>
+                    <li><a href="./index.html#infQuiz">Quiz</a></li>
+                    <li><a href="./index.html"><img src="./assets/album_title.png"></a></li>
+                    <li><a href="./index.html#sobre">Sobre</a></li>
+                    <div id="deslogado" class="opnav">
+                        <li><a href="./login.html">Login</a></li>
+                        <li><a href="./cadastro.html">Cadastro</a></li>
+                    </div>
+                    <div id="logado" class="opnav">
+                        <li><a href="./dashboard/dashboard.html">Dashboard</a></li>
+                        <li><a class="nomeUsuario">Olá, <b id="b_usuario"></b></a></li>
+                    </div>
                 </ul>
             </div>
 
@@ -46,14 +52,18 @@
                     "When We All Fall Asleep, Where Do We Go?" é o álbum de estreia de Billie Eilish, lançado em 2019.
                     Abordando temas como transtornos psicológicos e paralisia do sono, WWAFA se tornou um
                     projeto notório e marcante para a cultura pop, explorando temas sombrios e introspectivos com uma
-                    mistura de pop, electropop e trap. Vencedor de 6 grammy's com letras profundas e produções
+                    mistura de pop, electropop e trap. <br>
+                    Vencedor de 6 grammy's com letras profundas e produções
                     inovadoras, Billie e seu irmão Finneas criaram um álbum que ressoou mundialmente, sendo considerado
                     um de seus melhores trabalhos e ganhando diversos prêmios e consolidando Billie
-                    como uma das artistas mais influentes de sua geração, tudo isso sendo produzido em seu quarto!
+                    como uma das artistas mais influentes de sua geração, tudo isso sendo produzido em seu quarto! <br>
+                    Agora que você já sabe um pouco sobre o álbum, que tal <a class="irSobre" href="./sobre.html">saber
+                        mais sobre a Billie?</a>
                 </div>
                 <div class="img_album">
                     <img src="./assets/ghoul.png">
                 </div>
+                <img alt="">
             </div>
         </div>
     </section>
@@ -66,7 +76,7 @@
                     <div class="modal1 modal">
                         <div class="contentmodal">
                             <h2>!!!!!!!!</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa1" class="video_modal" src="./assets/faixa1.mp4"></video> <br>
                             <span>
                                 A introdução é um curto áudio de Billie Eilish tirando seu aparelho ortodôntico, seguido
                                 por uma conversa casual com seu irmão e colaborador Finneas. Este momento íntimo define
@@ -82,7 +92,9 @@
                     <div class="modal2 modal">
                         <div class="contentmodal">
                             <h2>bad guy</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <div class="visual-modal">
+                                <video id="faixa2" class="video_modal" src="./assets/faixa2.mp4"></video> <br>
+                            </div>
                             <span>
                                 Um dos maiores hits de Billie, "bad guy" é construído em torno de uma linha de baixo
                                 pulsante e batidas eletrônicas minimalistas. A faixa destaca-se por sua letra irônica e
@@ -99,7 +111,7 @@
                     <div class="modal3 modal">
                         <div class="contentmodal">
                             <h2>xanny</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa3" class="video_modal" src="./assets/faixa3.mp4"></video> <br>
                             <span>
                                 Uma crítica poderosa ao uso recreativo de drogas, "xanny" combina uma melodia lenta e
                                 atmosférica com batidas abafadas que evocam a sensação de estar sob o efeito de
@@ -116,7 +128,7 @@
                     <div class="modal4 modal">
                         <div class="contentmodal">
                             <h2>you should see me in a crown</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa4" class="video_modal" src="./assets/faixa4.mp4"></video> <br>
                             <span>
                                 Inspirada por uma citação do personagem Moriarty na série "Sherlock", esta faixa tem uma
                                 produção sombria e eletrônica que destaca a ambição e autoconfiança de Billie. Com
@@ -133,15 +145,18 @@
                     <div class="modal5 modal">
                         <div class="contentmodal">
                             <h2>all the good girls go to hell</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
-                            <span>
+                            <video id="faixa5" class="video_modal" src="./assets/faixa5.mp4"></video> <br>
+                            <span id="arrumar">
                                 Esta faixa combina uma melodia pop cativante com uma crítica irônica à hipocrisia
                                 religiosa e às questões ambientais. Billie personifica a Terra como uma figura cansada
                                 dos danos causados pela humanidade, e a produção vibrante e energética contrasta com a
                                 seriedade das letras. A música aborda a necessidade urgente de mudanças para proteger o
-                                meio ambiente. <br><br>
+                                meio ambiente.<br><br>
                             </span>
-                            <button onclick="tirarModal()"> Voltar </button>
+                            <div class="botoes">
+                                <button onclick="irSobre()"> Sobre </button>
+                                <button onclick="tirarModal()"> Voltar </button>
+                            </div>
                             <!-- <a onclick="infoEcologia()"> Saiba Mais </a> -->
                         </div>
                     </div>
@@ -151,7 +166,7 @@
                     <div class="modal6 modal">
                         <div class="contentmodal">
                             <h2>wish you were gay</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa6" class="video_modal" src="./assets/faixa6.mp4"></video> <br>
                             <span>
                                 Em "wish you were gay", Billie explora o sentimento de rejeição amorosa com humor e
                                 vulnerabilidade. A canção aborda o desejo de que a razão para a rejeição fosse algo fora
@@ -168,7 +183,7 @@
                     <div class="modal7 modal">
                         <div class="contentmodal">
                             <h2>when the party's over</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa7" class="video_modal" src="./assets/faixa7.mp4"></video> <br>
                             <span>
                                 Uma das baladas mais emocionantes do álbum, "when the party's over" é uma reflexão sobre
                                 o fim de um relacionamento e a solidão subsequente. A produção minimalista, com foco em
@@ -190,7 +205,7 @@
                     <div class="modal8 modal">
                         <div class="contentmodal">
                             <h2>8</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa8" class="video_modal" src="./assets/faixa8.mp4"></video> <br>
                             <span>
                                 "8" é uma faixa que mistura vulnerabilidade e frustração em um relacionamento
                                 desequilibrado. Billie alterna entre uma voz infantilizada e uma voz mais madura,
@@ -207,7 +222,7 @@
                     <div class="modal9 modal">
                         <div class="contentmodal">
                             <h2>my strange addiction</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa9" class="video_modal" src="./assets/faixa9.mp4"></video> <br>
                             <span>
                                 Com uma batida animada e elementos pop, "my strange addiction" compara um relacionamento
                                 tóxico a um vício. A faixa incorpora trechos de diálogos da série "The Office",
@@ -224,7 +239,7 @@
                     <div class="modal10 modal">
                         <div class="contentmodal">
                             <h2>bury a friend</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa10" class="video_modal" src="./assets/faixa10.mp4"></video> <br>
                             <span>
                                 "bury a friend" é uma das faixas mais sombrias do álbum, explorando temas de morte e
                                 pesadelos. A produção eletrônica e assustadora complementa as letras inquietantes, onde
@@ -241,7 +256,7 @@
                     <div class="modal11 modal">
                         <div class="contentmodal">
                             <h2>ilomilo</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa11" class="video_modal" src="./assets/faixa11.mp4"></video> <br>
                             <span>
                                 Em "ilomilo", Billie aborda o medo de abandono e a insegurança em relacionamentos. A
                                 melodia melancólica e os elementos eletrônicos sutis criam uma atmosfera de ansiedade.
@@ -259,7 +274,7 @@
                     <div class="modal12 modal">
                         <div class="contentmodal">
                             <h2>listen before i go</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa12" class="video_modal" src="./assets/faixa12.mp4"></video> <br>
                             <span>
                                 "listen before i go" é uma das faixas mais tristes do álbum, abordando pensamentos
                                 suicidas com uma melodia de piano suave. Billie expressa uma angústia profunda e um
@@ -276,7 +291,7 @@
                     <div class="modal13 modal">
                         <div class="contentmodal">
                             <h2>i love you</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa13" class="video_modal" src="./assets/faixa13.mp4"></video> <br>
                             <span>
                                 Uma balada acústica, "i love you" explora a complexidade do amor e o medo de se entregar
                                 emocionalmente. Billie canta sobre a vulnerabilidade e a hesitação em amar alguém. A
@@ -292,7 +307,7 @@
                     <div class="modal14 modal">
                         <div class="contentmodal">
                             <h2>goodbye</h2>
-                            <video class="video_modal" src="./assets/video_inicio.mp4"></video> <br>
+                            <video id="faixa14" class="video_modal" src="./assets/faixa14.mp4"></video> <br>
                             <span>
                                 Encerrando o álbum, "goodbye" repete trechos de todas as músicas anteriores, servindo
                                 como um resumo melódico e lírico da jornada do álbum. A faixa é uma despedida
@@ -314,13 +329,15 @@
     <section class="telaQuatro" id="infQuiz">
         <div class="info_quiz">
             <div class="container">
-                <img class="imagem_quiz" src="./assets/alternative_cover.png" alt="">
+                <div class="esquerda-quiz">
+                    <img class="imagem_quiz" src="./assets/alternative_cover.png">
+                </div>
                 <div class="texto_quiz">
                     <h1>VOCÊ CONHECE A BILLIE?</h1>
                     Você conhece mesmo a Billie Eilish? Descubra o quanto você sabe sobre a carreira, as músicas e as
                     curiosidades dessa artista incrível com um quiz interativo! Responda às perguntas e veja se você
-                    é um verdadeiro fã. Realize seu cadastro e se divirta com esse quiz! Vamos lá?<br>
-                    <u onclick="fazerQuiz()">Fazer Quiz</u>
+                    é um verdadeiro fã. Realize seu cadastro e se divirta com esse quiz! 
+                    <u onclick="fazerQuiz()">E aí, vamos lá?</u>
                 </div>
             </div>
         </div>
@@ -331,17 +348,30 @@
         <div class="sobre">
             <div class="container">
                 <div class="texto_sobre">
-                    <h1> SOBRE MIM </h1>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, quisquam saepe. Inventore expedita
-                    quibusdam, voluptates quidem commodi dolorem nihil consectetur tempora labore unde sequi corrupti,
-                    quia odio delectus! Dolor, consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Voluptate sequi excepturi dolores soluta dolor ut, ea consequuntur quaerat inventore eveniet et illo
-                    natus unde ducimus porro quidem, maiores adipisci neque. Lorem ipsum dolor, sit amet consectetur
-                    adipisicing elit. Atque enim quas magnam nostrum maxime similique assumenda id, reprehenderit, nam
-                    ratione nesciunt ut alias molestias quod dolor vero perspiciatis, esse cumque!
+                    <span class="conteudo-sobre">
+                        <h1> EI, QUER SABER COMO CONHECI A BILLIE? </h1>
+                        Em 2018, comecei a ouvir músicas compartilhadas em um grupo de WhatsApp sobre séries, e uma em
+                        particular, "B*tches Broken Hearts", me cativou. Depois, ao assistir a série "Os 13 Porquês",
+                        descobri que "Bored" era da mesma artista: Billie Eilish. Inicialmente, pensei que Billie Eilish
+                        fosse um homem. <br>
+
+                        Conforme fui ouvindo mais músicas dela, tornei-me um grande fã. Lembro de receber a notificação
+                        do lançamento do álbum de estreia dela enquanto estava na calçada do bar da minha avó e de ver o
+                        videoclipe de "bad guy" na casa da minha tia. <br>
+
+                        Em 2020, assisti aos Grammy Awards e vi Billie ganhar seus primeiros prêmios, e logo depois ela
+                        ganhou um Oscar e lançou seu segundo álbum. Suas letras me ajudaram a superar momentos difíceis,
+                        fazendo-me sentir menos sozinho. Em 2023, fui ao primeiro show dela no Brasil, país onde teve
+                        seu primeiro fã clube, e essa experiência foi marcante para mim.
+                    </span>
                 </div>
-                <div class="imagem_sobre">
-                    <img src="./assets/foto_pessoal.png">
+            </div>
+            <div class="container-sobre">
+                <div class="capa">
+                    <img class="album" src="./assets/sobre-cover.jpeg">
+                </div>
+                <div class="vinil">
+                    <img class="disco" src="./assets/vinil-sobre-verde.png">
                 </div>
             </div>
         </div>
@@ -361,6 +391,28 @@
 </html>
 
 <script>
+    let nomeSessao = sessionStorage.NOME_USUARIO
+
+    function usuarioLogado() {
+        b_usuario.innerHTML = nomeSessao
+        if (nomeSessao !== undefined) {
+            deslogado.style.display = 'none'
+            logado.style.display = 'flex'
+        } else {
+            deslogado.style.display = 'flex'
+            logado.style.display = 'none'
+        }
+    }
+
+    usuarioLogado()
+    setInterval(usuarioLogado, 5000)
+
+    let idSessao = sessionStorage.ID_USUARIO
+    let visualModal;
+
+    function irSobre() {
+        window.location = './sobre.html#ODS13'
+    }
 
     // FUNÇÃO PARA VÍDEO RODAR QUANDO USUÁRIO FICAR COM O CURSOR SOBRE A IMAGEM POR MAIS DE 3 SEGUNDOS
     var hoverImagem = document.getElementById('fundo_foto');
@@ -424,12 +476,29 @@
         if (modalSelecionado) {
             modalSelecionado.style.display = 'block';
         }
+
+        verVisual(faixaNumero)
+    }
+
+    function verVisual(numFaixa) {
+        var video = document.getElementById(`faixa${numFaixa}`);
+
+        if (video) {
+            video.muted = true;
+            video.play()
+        }
     }
 
     function tirarModal() {
         // Esconde todos os modais
         const modais = document.querySelectorAll('.modal');
         modais.forEach(modal => modal.style.display = 'none');
+
+        const videos = document.querySelectorAll('.video_modal');
+        videos.forEach(video => {
+            video.pause();
+            video.currentTime = 0;
+        });
     }
 
     function infoEcologia() {

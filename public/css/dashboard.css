@@ -6,8 +6,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Roboto Mono", monospace;
-    background-color: #000000b0;
-    background-image: url(../assets/fav-icon.png);
+    background-color: #030303b0;
+    background-image: url(../assets/fundo.png);
     overflow: hidden;
 }
 
@@ -24,12 +24,11 @@ body {
 }
 
 .logo img {
-    filter: invert(100%);
     width: 140px;
     margin-top: 35px;
 }
 
-.logo img:hover {
+/* .logo img:hover {
     animation: blink 0.2s steps(2, end) 2;
     cursor: default;
 }
@@ -46,7 +45,7 @@ body {
     100% {
         opacity: 1;
     }
-}
+} */
 
 .dash {
     display: flex;
@@ -146,7 +145,7 @@ body {
 }
 
 .menu {
-    background-color: #000000;
+    background-color: #030303;
     color: #ffffff;
     height: 48.6vw;
     width: 21vw;
@@ -156,7 +155,6 @@ body {
 
 .menu h1 {
     margin-top: 3rem;
-    /* background-color: orange; */
     text-align: center;
     font-size: 30px;
 }
@@ -170,7 +168,7 @@ body {
 .opcoes {
     display: flex;
     flex-direction: column;
-    margin-top: 7.5rem;
+    margin-top: 6.5rem;
     gap: 3.5rem;
 }
 
@@ -185,7 +183,7 @@ body {
 }
 
 .opcoes .sair {
-    margin-top: 6.3rem;
+    margin-top: 1.2rem;
 }
 
 .opcoes a:hover {
@@ -358,6 +356,7 @@ body {
     justify-content: center;
     color: #ffffff;
     padding: 22rem;
+    position: relative;
 }
 
 .formulario h1 {
@@ -399,6 +398,7 @@ body {
     transition: all 0.5s;   
 }
 
+
 .mensagem {
     background-color: #ffffff;
     color: #000000;
@@ -408,3 +408,49 @@ body {
     align-items: center;
     margin-top:15px;
 }
+
+.blohsh-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 250px;
+    background-color: #ffffffb7; 
+    color: #000000;
+    text-align: center;
+    border-radius: 9px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 80%; 
+    margin-left: 10px;
+    transform: translateY(-50%);
+    opacity: 100;
+    transition: opacity 0.3s;
+}
+
+.blohsh-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+#p_usuario {
+    color: #008216;
+}
+
+.tooltip a {
+    text-decoration: none;
+    color: #008216;
+}
+
+.tooltip a:hover {
+    text-decoration: none;
+    color: #00ff2a;
+    background-color: #000000;
+    transition: all 0.4s;
+}
+

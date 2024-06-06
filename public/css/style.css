@@ -1,34 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+* {
+    scroll-behavior: smooth;
 
+}
 
 body {
     margin: 0;
     padding: 0;
     font-family: "Roboto Mono", monospace;
-    background-color: #000000;
+    background-color: #030303;
 }
 
 .inicio {
     width: 100%;
     height: 930px;
-    background-color: #000000;
+    background-color: #030303;
 }
 
 
 .navbar {
-    background-color: #0000007e;
+    background-color: #0303037e;
     height: 148px;
     width: 100%;
     padding: 0;
     margin: 0;
-    box-shadow: 1px 0px 10rem #000000;
+    box-shadow: 1px 0px 10rem #030303;
     position: fixed;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     list-style: none;
+    z-index: 100;
 }
 
 .navbar a {
@@ -66,6 +70,25 @@ body {
     transition: all 0.3s;
 }
 
+.opnav {
+    display: flex;
+    gap: 7rem;
+}
+
+.irSobre {
+    color: #00ff2a;
+    /* font-weight: bold 0.4; */
+    font-size: larger;
+}
+
+.nomeUsuario b {
+    color: #00ff2a;
+}
+
+.nomeUsuario:hover {
+    cursor: default;
+}
+
 .img_inicial {
     display: flex;
 }
@@ -90,7 +113,7 @@ body {
 .telaDois {
     width: 100%;
     height: 930px;
-    background-color: #000000;
+    background-color: #030303;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,7 +165,7 @@ body {
 .telaTres {
     width: 100%;
     height: 930px;
-    background-color: #000000;
+    background-color: #030303;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,6 +227,9 @@ body {
     margin: 80px;
 }
 
+.botoes {
+    flex-direction: row;
+}
 
 .analise_faixas p {
     transition: all .1s ease-in-out;
@@ -226,7 +252,7 @@ body {
 .telaQuatro {
     width: 100%;
     height: 930px;
-    background-color: #000000;
+    background-color: #030303;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -247,7 +273,7 @@ body {
     height: 15%;
     justify-content: end;
     text-align: end;
-    margin-left: 9px;
+    margin-left: 55px;
     flex-direction: column;
 
 }
@@ -257,22 +283,29 @@ body {
     justify-content: end;
 }
 
-.texto_quiz u:hover{
+.texto_quiz u:hover {
     cursor: pointer;
     color: #00ff2a;
     transition: all 0.5s;
 }
 
-.imagem_quiz {
+.esquerda-quiz {
+    width: 50%;
     display: flex;
-    width: 55%;    
+    height: 100%;
+}
+
+.imagem_quiz {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
 .telaCinco {
-    width: 100%;
+    width: 90%;
     height: 930px;
-    background-color: #000000;
+    background-color: #030303;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -285,24 +318,109 @@ body {
     align-items: center;
 }
 
+.sobre {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .texto_sobre {
     color: #ffffff;
     font-size: 20px;
     display: flex;
-    width: 45%;
-    margin-left: 250px;
-    flex-direction: column;
+    width: 95%;
     text-align: justify;
+}
 
+.conteudo-sobre {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10rem;
 }
 
 .texto_sobre h1 {
     display: flex;
     color: #ffffff;
-    font-size: 40px;
+    font-size: 35px;
 }
 
-.imagem_sobre {
+
+.container-sobre {
+    position: relative;
+    width: 75rem;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.capa {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 450px;
+    height: 450px;
+    z-index: 2;
+    overflow: hidden;
+    /* Capa do álbum ficará por cima */
+    transition: transform 0.5s ease, z-index 0.5s ease;
+}
+
+.album {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vinil {
+    position: absolute;
+    top: 0;
+    left: 58%;
+    /* Começa a partir da metade do contêiner */
+    width: 57%;
+    height: 100%;
+    z-index: 1;
+    /* Disco de vinil ficará atrás da capa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease, z-index 0.5s ease;
+}
+
+.disco {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    transform-origin: center;
+    /* Centraliza a rotação */
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.container-sobre:hover .capa {
+    z-index: 1;
+    transform: translateX(20px);
+}
+
+.container-sobre:hover .vinil {
+    z-index: 2;
+    transform: translateX(-20px);
+}
+
+
+
+/* .imagem_sobre {
     display: flex;
     width: 100%;
     height: 650px;
@@ -312,124 +430,34 @@ body {
 
 .imagem_sobre img {
     border-radius: 50%;
-}
+    animation: rotate 15s linear infinite;
+} */
 
-/* CAMPOS LOGIN */
 
-.telaLogin {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 150px;
-    color: #ffffff;
-}
 
-.telaLogin .container {
-    width: 470px;
-    height: 460px;
-    display: flex;
-    flex-direction: column;
-    background-color: #808080;
-    align-items: center;
-    border-radius: 3%;
-}
 
-.input_usuario {
-    display: flex;
-    height: 90%;
-    width: 80%;
-    justify-content: space-around;
-    flex-direction: column;
-}
 
-.input_usuario span {
-    font-size: 15px;
-    font-weight: 800;
-}
-
-.input_usuario input {
-    border: none;
-    text-align: center;
-    border-radius: 8px;
-    margin: 0;
-    background-color: #755e5e;
-}
-
-.input_usuario ::placeholder {
-    color: antiquewhite;
-}
-
-.campo {
-    display: flex;
-    flex-direction: column;
-    padding: 3px 0;
-}
-
-.input_usuario {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.card_cadastro h1 {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 35px;
-}
-
-.botao {
-    cursor: pointer;
-    border: 0;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 18px;
-    color: #000000;
-    background-color: #ffffff;
-    width: 120px;
-    height: 30px;
-    align-self: center;
-}
-
-.botao:hover {
-    background-color: #000000;
-    color: #ffffff;
-    transition: all 0.4s;
-
-}
-
-.login_cad {
-    font-size: 12px;
-    margin-top: 4px;
-    text-align: center;
-}
-
-.login_cad a {
-    color: #ffffff;
-    cursor: pointer;
-}
 
 .loading-div {
     width: 50px;
     display: none;
-  }
-  
-  .loading-div img {
+}
+
+.loading-div img {
     height: 50px;
     width: 50px;
-  }
-  
-  #div_erros_login {
+}
+
+#div_erros_login {
     display: none
 }
 
-.alerta_erro{
+.alerta_erro {
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .card_erro {
+}
+
+.card_erro {
     display: none;
     background-color: #fff;
     color: black;
@@ -439,12 +467,12 @@ body {
     border: #e6005a 3px solid;
     padding: 10px;
     margin-right: 10%;
-  }
-  
-  .card_erro #mensagem_erro{
+}
+
+.card_erro #mensagem_erro {
     font-weight: 500;
     font-size: 20px;
-  }
+}
 
 .voltar_Site {
     margin: 1.5%;
@@ -487,7 +515,7 @@ body {
 }
 
 /* MODAL */
-.contentmodal{
+.contentmodal {
     background-color: #ffffffa8;
     color: #000000;
     margin: 6% auto;
@@ -501,7 +529,7 @@ body {
 
 .contentmodal button {
     border-color: transparent;
-    background-color: #000000;
+    background-color: #030303;
     color: #ffffff;
     border-radius: 15px;
     cursor: pointer;
@@ -539,7 +567,7 @@ body {
     text-align: center;
 }
 
-.modal1{
+.modal1 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -548,10 +576,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal2{
+.modal2 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -560,10 +588,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal3{
+.modal3 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -572,10 +600,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal4{
+.modal4 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -584,10 +612,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal5{
+.modal5 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -596,10 +624,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal6{
+.modal6 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -608,10 +636,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal7{
+.modal7 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -620,10 +648,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal8{
+.modal8 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -632,10 +660,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal9{
+.modal9 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -644,10 +672,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal10{
+.modal10 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -656,10 +684,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal11{
+.modal11 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -668,10 +696,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal12{
+.modal12 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -680,10 +708,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal13{
+.modal13 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -692,10 +720,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.modal14{
+.modal14 {
     display: none;
     position: fixed;
     z-index: 10;
@@ -704,12 +732,19 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:#554f4f91;
+    background-color: #554f4f91;
 }
 
-.video_modal {
-    background-color: #00ff2a;
+.visual-modal {
     width: 880px;
     height: 400px;
     display: flex;
+
 }
+
+.video_modal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

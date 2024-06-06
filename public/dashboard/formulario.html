@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="icon" href="../assets/fav-icon.png">
+    <script src="../js/sessao.js"></script>
     <title> WWAFA | Faixa Favorita </title>
 </head>
 
@@ -14,16 +15,21 @@
         <div class="menu">
             <div class="logo">
                 <h1>BEM VINDO(A)!</h1>
-                <img src="../assets/fav-icon.png">
+                <div class="blohsh-container">
+                    <img src="../assets/fav-icon.png">
+                    <div class="tooltip">Olá, <span id="p_usuario"></span>!, me chamo <u>Blohsh</u>, e simbolizo a Billie desde o início de sua carreira! <br> <a href="../sobre.html#origemBlohsh">Que tal saber mais sobre minha origem?</a></div>
+                </div>
             </div>
             <div id="opcoes_menu" class="opcoes">
                 <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
-                <a href="../index.html" class="sair" onclick="limparSessao()">Sair</a>
+                <a href="../index.html">Início</a>
+                <a class="sair" onclick="limparSessao()">Sair</a>
             </div>
         </div>
-        <div class="formulario">
+
+        <div class="formulario"> 
             <h1>Escolha uma música do álbum "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?"</h1>
             <select id="select_faixa">
                 <option value="0"> ----- </option>
@@ -51,6 +57,8 @@
 </html>
 
 <script>
+    let nomeUsuario = sessionStorage.NOME_USUARIO
+    p_usuario.innerHTML = nomeUsuario
     let faixa1 = 0
     let faixa2 = 0
     let faixa3 = 0

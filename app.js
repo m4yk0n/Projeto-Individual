@@ -17,7 +17,6 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var medidasRouter = require("./src/routes/medidas");
 var quizRouter = require("./src/routes/quiz")
 var formularioRouter = require("./src/routes/formulario")
 
@@ -29,7 +28,6 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/medidas", medidasRouter);
 app.use("/quiz", quizRouter)
 app.use("/formulario", formularioRouter)
 

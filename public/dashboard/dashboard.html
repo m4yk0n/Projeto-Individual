@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="icon" href="../assets/fav-icon.png">
     <title>WWAFA | Dashboard</title>
@@ -16,13 +17,17 @@
         <div class="menu">
             <div class="logo">
                 <h1>BEM VINDO(A)!</h1>
-                <img src="../assets/fav-icon.png">
+                <div class="blohsh-container">
+                    <img src="../assets/fav-icon.png">
+                    <div class="tooltip">Olá, <span id="p_usuario"></span>!, me chamo <u>Blohsh</u>, e simbolizo a Billie desde o início de sua carreira! <br> <a href="../sobre.html#origemBlohsh">Que tal saber mais sobre minha origem?</a></div>
+                </div>
             </div>
             <div id="opcoes_menu" class="opcoes">
                 <a href="dashboard.html">Dashboard</a>
                 <a href="quiz.html">Quiz</a>
                 <a href="formulario.html">Favoritos</a>
-                <a href="../index.html" class="sair" onclick="limparSessao()">Sair</a>
+                <a href="../index.html">Início</a>
+                <a class="sair" onclick="limparSessao()">Sair</a>
             </div>
         </div>
 
@@ -75,6 +80,8 @@
 </html>
 
 <script>
+    let nomeUsuario = sessionStorage.NOME_USUARIO
+    p_usuario.innerHTML = nomeUsuario
     let musicaFundo;
     let comecarMusica = false
 
@@ -251,12 +258,21 @@
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+                animation: false,
+                scales: {
+                    x: {
+                        display: false,
+                        beginAtZero: true,
+                    },
+                    y: {
+                        display: false,
+                        beginAtZero: true,
+                    }
+                },
+                animation: {
+                    duration: 0
+                },
             }
-        }
     });
 
     function atualizarGrafico(dados) {
@@ -313,7 +329,6 @@
         // Atualiza o gráfico
         graficoQuiz.update();
     }
-
 
     // Chamar a função para buscar os dados do usuário e atualizar o gráfico
     buscarDadosUsuario();
